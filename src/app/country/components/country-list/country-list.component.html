@@ -1,0 +1,62 @@
+<section class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-5 mb-5">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Icono</th>
+        <th>Bandera</th>
+        <th>Nombre</th>
+        <th>Capital</th>
+        <th>Poblacion</th>
+      </tr>
+    </thead>
+    <tbody>
+     @for(country of countries(); track country.cca2; let index = $index){
+      <tr>
+        <td>{{index + 1}}</td>
+        <td>{{country.flag}}</td>
+        <td>
+          <img [src]="country.flagSvg" [alt]="" class="w-10">
+        </td>
+        <td>{{country.name}}</td>
+        <td>{{country.capital}}</td>
+        <td>
+          <span class="badge badge-secondary">
+            {{country.population | number }}
+          </span>
+        </td>
+        <td>
+          <a
+          [routerLink]="['/country/by', country.cca2]" routerLinkActive="router-link-active"
+          class="link-primary cursor-pointer">Mas informacion</a>
+        </td>
+
+      </tr>
+     }
+     @if (errorMessage()) {
+      <tr>
+        <td colspan="8" class="text-center">
+          {{errorMessage()}}
+        </td>
+      </tr>
+     }
+
+     @if (countries().length === 0 && !isLoading() ) {
+        <td colspan="8" class="text-center">
+          No hay paises que mostrar
+        </td>
+     }
+
+     @if (isLoading()) {
+      <tr>
+        <td colspan="8" class="text-center">
+          <div class="flex justify-center items-center">
+            <span class="loading loading-spinner loading-lg"></span>
+          </div>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</section>

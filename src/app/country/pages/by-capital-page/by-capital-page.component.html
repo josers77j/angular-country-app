@@ -1,0 +1,4 @@
+
+<country-search-input  placeholder="Buscar por capital" (value)="query.set($event)" #value/>
+
+  <country-list [countries]="countryResource.value() ?? []"/>
