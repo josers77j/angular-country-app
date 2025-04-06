@@ -4,7 +4,9 @@
 }
 
 @if (countryResource.isLoading()) {
-  <h1 class="text-3xl">Cargando...</h1>
+  <section class="flex flex-col items-center justify-center mt-10">
+    <span class="loading loading-dots loading-xl"></span>
+  </section>
 }
 
 @if (countryResource.hasValue()) {
