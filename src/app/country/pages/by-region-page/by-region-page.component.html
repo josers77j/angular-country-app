@@ -1,1 +1,27 @@
-<!-- <country-list /> -->
+<section class="container">
+  <h1 class="text-2xl">Por region</h1>
+  <h3 class="font-thin">Seleccione una region</h3>
+</section>
+
+<section class="container">
+  <ul class="menu menu-horizontal bg-base-200">
+
+    @for(region of regions; track region;) {
+      <li>
+        <a
+        class="btn mr-2 w-[100px]"
+        (click)="selectedRegion.set(region)"
+        [class.btn-secondary]="region === selectedRegion()"
+        >{{region}}</a>
+      </li>
+  }
+
+  </ul>
+</section>
+
+<country-list
+[countries]="countryResource.value() ?? []"
+[errorMessage]="countryResource.error()"
+[isEmpty]="countryResource.value()?.length === 0"
+[isLoading]="countryResource.isLoading()"
+/>
